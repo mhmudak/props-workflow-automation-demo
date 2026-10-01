@@ -1,41 +1,48 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 const initialForm = {
-  question: '',
-  answerA: '',
-  answerB: '',
-  answerC: '',
-  answerD: '',
-  correctAnswer: 'A',
-  hint: '',
-  feedback: '',
-  difficulty: 'Medium',
-  dok: '2',
-  grade: '4',
-  keywords: '',
-  learningOutcome: '',
-}
+  question: "",
+  answerA: "",
+  answerB: "",
+  answerC: "",
+  answerD: "",
+  correctAnswer: "A",
+  hint: "",
+  feedback: "",
+  difficulty: "Medium",
+  dok: "2",
+  grade: "4",
+  keywords: "",
+  learningOutcome: "",
+};
 
 function App() {
-  const [form, setForm] = useState(initialForm)
-  const [saved, setSaved] = useState(false)
+  const [form, setForm] = useState(initialForm);
+  const [saved, setSaved] = useState(false);
+  const [platformId, setPlatformId] = useState("");
 
   const updateField = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
 
     setForm((current) => ({
       ...current,
       [name]: value,
-    }))
+    }));
 
-    setSaved(false)
-  }
+    setSaved(false);
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    setSaved(true)
-  }
+    event.preventDefault();
+    setSaved(true);
+    const generatedPlatformId = `PROPS-DEMO-Q-${window.crypto
+      .randomUUID()
+      .slice(0, 8)
+      .toUpperCase()}`;
+
+    setPlatformId(generatedPlatformId);
+  };
 
   return (
     <div className="app-shell">
@@ -45,9 +52,7 @@ function App() {
             Pr<span>Ops</span>
           </div>
 
-          <div className="brand-subtitle">
-            Workflow Automation Engineering
-          </div>
+          <div className="brand-subtitle">Workflow Automation Engineering</div>
         </div>
 
         <div className="demo-badge">DEMO ENVIRONMENT</div>
@@ -98,14 +103,12 @@ function App() {
               </div>
 
               <div className="answers-grid">
-                {['A', 'B', 'C', 'D'].map((letter) => {
-                  const fieldName = `answer${letter}`
+                {["A", "B", "C", "D"].map((letter) => {
+                  const fieldName = `answer${letter}`;
 
                   return (
                     <div className="field" key={letter}>
-                      <label htmlFor={fieldName}>
-                        Answer {letter}
-                      </label>
+                      <label htmlFor={fieldName}>Answer {letter}</label>
 
                       <div className="answer-field">
                         <span>{letter}</span>
@@ -119,7 +122,7 @@ function App() {
                         />
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
 
@@ -255,9 +258,7 @@ function App() {
                 </div>
 
                 <div className="field">
-                  <label htmlFor="learningOutcome">
-                    Learning Outcome
-                  </label>
+                  <label htmlFor="learningOutcome">Learning Outcome</label>
 
                   <input
                     id="learningOutcome"
@@ -294,9 +295,7 @@ function App() {
             <div>
               <strong>Assessment Configuration</strong>
 
-              <p>
-                Complete the fields above, then save the assessment.
-              </p>
+              <p>Complete the fields above, then save the assessment.</p>
             </div>
 
             <button id="saveAssessment" type="submit">
@@ -305,15 +304,14 @@ function App() {
           </div>
 
           {saved && (
-            <div
-              id="saveSuccess"
-              className="success-message"
-              role="status"
-            >
+            <div id="saveSuccess" className="success-message" role="status">
               <span>✓</span>
 
               <div>
                 <strong>Assessment successfully created</strong>
+                <div>
+                  Platform ID: <strong id="platformId">{platformId}</strong>
+                </div>
                 <p>
                   The assessment passed validation and was saved successfully.
                 </p>
@@ -329,7 +327,7 @@ function App() {
         <span>by 3A · Saida, Lebanon</span>
       </footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
