@@ -180,6 +180,16 @@ props-workflow-automation-demo/
 
 ## Running the Project
 
+## Demo and Benchmark Modes
+
+The automation supports two execution modes built on the same shared runtime.
+
+### Demo Mode
+
+````bash
+cd automation
+npm run demo
+
 ### Requirements
 
 - Node.js
@@ -194,7 +204,7 @@ props-workflow-automation-demo/
 cd frontend
 npm install
 npm run dev
-```
+````
 
 The application runs locally at:
 
