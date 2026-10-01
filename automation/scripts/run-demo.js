@@ -2,52 +2,58 @@ const fs = require('fs')
 const path = require('path')
 
 const {
-  runAssessment,
+    runAssessment,
 } = require('../src/runtime/assessment-runner')
 
 const dataPath = path.join(
-  __dirname,
-  '..',
-  'data',
-  'sample-question.json'
+    __dirname,
+    '..',
+    'data',
+    'sample-question.json'
 )
 
 const assessment = JSON.parse(
-  fs.readFileSync(dataPath, 'utf8')
+    fs.readFileSync(dataPath, 'utf8')
 )
 
 async function run() {
-  console.log(
-    'Opening PrOps Demo Platform...'
-  )
+    console.log(
+        'Opening PrOps Demo Platform...'
+    )
 
-  console.log(
-    `Processing ${assessment.type.toUpperCase()} assessment in DEMO mode...`
-  )
+    console.log(
+        `Processing ${assessment.type.toUpperCase()} assessment in DEMO mode...`
+    )
 
-  const result = await runAssessment({
-    assessment,
+    const result = await runAssessment({
+        assessment,
 
-    // Visible, deliberately slowed
-    // so viewers can follow the workflow.
-    headless: false,
-    slowMo: 250,
+        // Visible, deliberately slowed
+        // so viewers can follow the workflow.
+        headless: false,
+        slowMo: 250,
 
-    // Keep final result visible.
-    keepOpenMs: 5000,
-  })
+        // Keep final result visible.
+        keepOpenMs: 5000,
+    })
 
-  console.log(
-    '✓ Assessment successfully created'
-  )
+    console.log(
+        '✓ Assessment successfully created'
+    )
 
-  console.log(
-    `Execution time: ${(result.executionMs / 1000).toFixed(2)} s`
-  )
+    if (result.platformId) {
+        console.log(
+            `Platform ID: ${result.platformId}`
+        )
+    }
+
+    console.log(
+        `Execution time: ${(result.executionMs / 1000).toFixed(2)} s`
+    )
 }
 
 run().catch((error) => {
-  console.error('Demo failed:')
-  console.error(error)
-  process.exit(1)
+    console.error('Demo failed:')
+    console.error(error)
+    process.exit(1)
 })

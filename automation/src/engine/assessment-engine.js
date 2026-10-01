@@ -1,59 +1,57 @@
 const {
-  validateMcq,
-  handleMcq,
+    validateMcq,
+    handleMcq,
 } = require('../handlers/mcq.handler')
 
 function validateAssessment(
-  assessment
+    assessment
 ) {
-  if (
-    !assessment ||
-    typeof assessment !== 'object'
-  ) {
-    throw new Error(
-      'Assessment must be an object.'
-    )
-  }
+    if (
+        !assessment ||
+        typeof assessment !== 'object'
+    ) {
+        throw new Error(
+            'Assessment must be an object.'
+        )
+    }
 
-  switch (assessment.type) {
-    case 'mcq':
-      validateMcq(assessment)
-      return true
+    switch (assessment.type) {
+        case 'mcq':
+            validateMcq(assessment)
+            return true
 
-    default:
-      throw new Error(
-        `Unsupported assessment type: ${assessment.type}`
-      )
-  }
+        default:
+            throw new Error(
+                `Unsupported assessment type: ${assessment.type}`
+            )
+    }
 }
 
 async function processAssessment(
-  assessment,
-  adapter
+    assessment,
+    adapter
 ) {
-  // Defensive validation remains here
-  // even when batch preflight was used.
-  validateAssessment(
-    assessment
-  )
+    // Defensive validation remains here
+    // even when batch preflight was used.
+    validateAssessment(
+        assessment
+    )
 
-  switch (assessment.type) {
-    case 'mcq':
-      await handleMcq(
-        assessment,
-        adapter
-      )
+    switch (assessment.type) {
+        case 'mcq':
+            return handleMcq(
+                assessment,
+                adapter
+            )
 
-      return
-
-    default:
-      throw new Error(
-        `Unsupported assessment type: ${assessment.type}`
-      )
-  }
+        default:
+            throw new Error(
+                `Unsupported assessment type: ${assessment.type}`
+            )
+    }
 }
 
 module.exports = {
-  validateAssessment,
-  processAssessment,
+    validateAssessment,
+    processAssessment,
 }

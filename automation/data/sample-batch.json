@@ -1,6 +1,6 @@
 [
   {
-    "sourceId": "DEMO-BATCH-MCQ-0001",
+    "sourceId": "DEMO-BATCH-MCQ-000001",
     "type": "mcq",
     "questionText": "Which planet is closest to the Sun?",
     "answers": [
@@ -39,7 +39,7 @@
     "learningOutcome": "SCI.4.2.1"
   },
   {
-    "sourceId": "DEMO-BATCH-MCQ-0002",
+    "sourceId": "DEMO-BATCH-MCQ-000002",
     "type": "mcq",
     "questionText": "Which planet is known as the Red Planet?",
     "answers": [
@@ -78,7 +78,7 @@
     "learningOutcome": "SCI.4.2.2"
   },
   {
-    "sourceId": "DEMO-BATCH-MCQ-0003",
+    "sourceId": "DEMO-BATCH-MCQ-000003",
     "type": "mcq",
     "questionText": "Which planet is the largest in the Solar System?",
     "answers": [
