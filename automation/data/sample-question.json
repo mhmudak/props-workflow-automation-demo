@@ -1,4 +1,5 @@
 {
+  "type": "mcq",
   "questionText": "Which planet is closest to the Sun?",
   "answers": [
     {
@@ -28,10 +29,7 @@
     "difficulty": "Medium",
     "dok": "2",
     "grade": "4",
-    "keywords": [
-      "planets",
-      "solar system"
-    ]
+    "keywords": ["planets", "solar system"]
   },
   "learningOutcome": "SCI.4.2.1"
 }
