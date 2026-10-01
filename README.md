@@ -186,9 +186,10 @@ The automation supports two execution modes built on the same shared runtime.
 
 ### Demo Mode
 
-````bash
+```bash
 cd automation
 npm run demo
+```
 
 ### Requirements
 
@@ -204,7 +205,7 @@ npm run demo
 cd frontend
 npm install
 npm run dev
-````
+```
 
 The application runs locally at:
 
