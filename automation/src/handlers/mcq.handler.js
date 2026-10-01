@@ -87,5 +87,6 @@ async function handleMcq(question, adapter) {
 }
 
 module.exports = {
+  validateMcq,
   handleMcq,
 }

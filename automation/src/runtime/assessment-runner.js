@@ -8,12 +8,10 @@ const {
   processAssessment,
 } = require('../engine/assessment-engine')
 
-async function runAssessment({
-  assessment,
+async function createAssessmentSession({
   headless = false,
   slowMo = 0,
-  keepOpenMs = 0,
-}) {
+} = {}) {
   const browser = await chromium.launch({
     headless,
     channel: 'chrome',
@@ -27,9 +25,13 @@ async function runAssessment({
     },
   })
 
-  try {
-    const adapter = new PrOpsDemoAdapter(page)
+  const adapter =
+    new PrOpsDemoAdapter(page)
 
+  async function runAssessmentInSession({
+    assessment,
+    keepOpenMs = 0,
+  }) {
     await adapter.open()
 
     const startedAt = performance.now()
@@ -45,18 +47,52 @@ async function runAssessment({
       finishedAt - startedAt
 
     if (keepOpenMs > 0) {
-      await page.waitForTimeout(keepOpenMs)
+      await page.waitForTimeout(
+        keepOpenMs
+      )
     }
 
     return {
       success: true,
       executionMs,
     }
-  } finally {
+  }
+
+  async function close() {
     await browser.close()
+  }
+
+  return {
+    runAssessment:
+      runAssessmentInSession,
+
+    close,
+  }
+}
+
+async function runAssessment({
+  assessment,
+  headless = false,
+  slowMo = 0,
+  keepOpenMs = 0,
+}) {
+  const session =
+    await createAssessmentSession({
+      headless,
+      slowMo,
+    })
+
+  try {
+    return await session.runAssessment({
+      assessment,
+      keepOpenMs,
+    })
+  } finally {
+    await session.close()
   }
 }
 
 module.exports = {
+  createAssessmentSession,
   runAssessment,
 }

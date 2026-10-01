@@ -1,16 +1,41 @@
 const {
+  validateMcq,
   handleMcq,
 } = require('../handlers/mcq.handler')
+
+function validateAssessment(
+  assessment
+) {
+  if (
+    !assessment ||
+    typeof assessment !== 'object'
+  ) {
+    throw new Error(
+      'Assessment must be an object.'
+    )
+  }
+
+  switch (assessment.type) {
+    case 'mcq':
+      validateMcq(assessment)
+      return true
+
+    default:
+      throw new Error(
+        `Unsupported assessment type: ${assessment.type}`
+      )
+  }
+}
 
 async function processAssessment(
   assessment,
   adapter
 ) {
-  if (!assessment.type) {
-    throw new Error(
-      'Assessment type is required.'
-    )
-  }
+  // Defensive validation remains here
+  // even when batch preflight was used.
+  validateAssessment(
+    assessment
+  )
 
   switch (assessment.type) {
     case 'mcq':
@@ -18,7 +43,8 @@ async function processAssessment(
         assessment,
         adapter
       )
-      break
+
+      return
 
     default:
       throw new Error(
@@ -28,5 +54,6 @@ async function processAssessment(
 }
 
 module.exports = {
+  validateAssessment,
   processAssessment,
 }

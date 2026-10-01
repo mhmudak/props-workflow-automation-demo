@@ -1,0 +1,119 @@
+[
+  {
+    "sourceId": "DEMO-BATCH-MCQ-0001",
+    "type": "mcq",
+    "questionText": "Which planet is closest to the Sun?",
+    "answers": [
+      {
+        "label": "A",
+        "text": "Venus",
+        "correct": false
+      },
+      {
+        "label": "B",
+        "text": "Mercury",
+        "correct": true
+      },
+      {
+        "label": "C",
+        "text": "Earth",
+        "correct": false
+      },
+      {
+        "label": "D",
+        "text": "Mars",
+        "correct": false
+      }
+    ],
+    "hint": "It is the smallest planet in the Solar System.",
+    "generalFeedback": "Mercury is the closest planet to the Sun.",
+    "metadata": {
+      "difficulty": "Medium",
+      "dok": "2",
+      "grade": "4",
+      "keywords": [
+        "planets",
+        "solar system"
+      ]
+    },
+    "learningOutcome": "SCI.4.2.1"
+  },
+  {
+    "sourceId": "DEMO-BATCH-MCQ-0002",
+    "type": "mcq",
+    "questionText": "Which planet is known as the Red Planet?",
+    "answers": [
+      {
+        "label": "A",
+        "text": "Mercury",
+        "correct": false
+      },
+      {
+        "label": "B",
+        "text": "Mars",
+        "correct": true
+      },
+      {
+        "label": "C",
+        "text": "Jupiter",
+        "correct": false
+      },
+      {
+        "label": "D",
+        "text": "Venus",
+        "correct": false
+      }
+    ],
+    "hint": "Its surface contains iron oxide.",
+    "generalFeedback": "Mars is commonly known as the Red Planet.",
+    "metadata": {
+      "difficulty": "Easy",
+      "dok": "1",
+      "grade": "4",
+      "keywords": [
+        "Mars",
+        "planets"
+      ]
+    },
+    "learningOutcome": "SCI.4.2.2"
+  },
+  {
+    "sourceId": "DEMO-BATCH-MCQ-0003",
+    "type": "mcq",
+    "questionText": "Which planet is the largest in the Solar System?",
+    "answers": [
+      {
+        "label": "A",
+        "text": "Earth",
+        "correct": false
+      },
+      {
+        "label": "B",
+        "text": "Saturn",
+        "correct": false
+      },
+      {
+        "label": "C",
+        "text": "Jupiter",
+        "correct": true
+      },
+      {
+        "label": "D",
+        "text": "Mars",
+        "correct": false
+      }
+    ],
+    "hint": "It is a gas giant.",
+    "generalFeedback": "Jupiter is the largest planet in the Solar System.",
+    "metadata": {
+      "difficulty": "Easy",
+      "dok": "1",
+      "grade": "4",
+      "keywords": [
+        "Jupiter",
+        "planets"
+      ]
+    },
+    "learningOutcome": "SCI.4.2.3"
+  }
+]
