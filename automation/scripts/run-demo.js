@@ -1,14 +1,9 @@
-const { chromium } = require('playwright')
 const fs = require('fs')
 const path = require('path')
 
 const {
-  PrOpsDemoAdapter,
-} = require('../src/adapters/props-demo.adapter')
-
-const {
-  processAssessment,
-} = require('../src/engine/assessment-engine')
+  runAssessment,
+} = require('../src/runtime/assessment-runner')
 
 const dataPath = path.join(
   __dirname,
@@ -22,51 +17,37 @@ const assessment = JSON.parse(
 )
 
 async function run() {
-  const browser = await chromium.launch({
+  console.log(
+    'Opening PrOps Demo Platform...'
+  )
+
+  console.log(
+    `Processing ${assessment.type.toUpperCase()} assessment in DEMO mode...`
+  )
+
+  const result = await runAssessment({
+    assessment,
+
+    // Visible, deliberately slowed
+    // so viewers can follow the workflow.
     headless: false,
-    channel: 'chrome',
     slowMo: 250,
+
+    // Keep final result visible.
+    keepOpenMs: 5000,
   })
 
-  const page = await browser.newPage({
-    viewport: {
-      width: 1440,
-      height: 1000,
-    },
-  })
+  console.log(
+    '✓ Assessment successfully created'
+  )
 
-  try {
-    console.log(
-      'Opening PrOps Demo Platform...'
-    )
-
-    const adapter =
-      new PrOpsDemoAdapter(page)
-
-    await adapter.open()
-
-    console.log(
-      `Processing ${assessment.type.toUpperCase()} assessment...`
-    )
-
-    await processAssessment(
-      assessment,
-      adapter
-    )
-
-    console.log(
-      '✓ Assessment successfully created'
-    )
-
-    await page.waitForTimeout(5000)
-  } finally {
-    await browser.close()
-  }
+  console.log(
+    `Execution time: ${(result.executionMs / 1000).toFixed(2)} s`
+  )
 }
 
 run().catch((error) => {
-  console.error('Automation failed:')
+  console.error('Demo failed:')
   console.error(error)
-
   process.exit(1)
 })
