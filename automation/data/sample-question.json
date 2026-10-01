@@ -1,0 +1,37 @@
+{
+  "questionText": "Which planet is closest to the Sun?",
+  "answers": [
+    {
+      "label": "A",
+      "text": "Venus",
+      "correct": false
+    },
+    {
+      "label": "B",
+      "text": "Mercury",
+      "correct": true
+    },
+    {
+      "label": "C",
+      "text": "Earth",
+      "correct": false
+    },
+    {
+      "label": "D",
+      "text": "Mars",
+      "correct": false
+    }
+  ],
+  "hint": "It is the smallest planet in the Solar System.",
+  "generalFeedback": "Mercury is the closest planet to the Sun.",
+  "metadata": {
+    "difficulty": "Medium",
+    "dok": "2",
+    "grade": "4",
+    "keywords": [
+      "planets",
+      "solar system"
+    ]
+  },
+  "learningOutcome": "SCI.4.2.1"
+}
