@@ -6,7 +6,8 @@
   "scripts": {
     "demo": "node scripts/run-demo.js",
     "demo:baseline": "node scripts/run-demo.baseline.js",
-    "benchmark": "node scripts/run-benchmark.js"
+    "benchmark": "node scripts/run-benchmark.js",
+    "execute": "node scripts/run-execution.js"
   },
   "keywords": [],
   "author": "",

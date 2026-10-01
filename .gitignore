@@ -10,3 +10,6 @@ test-results/
 
 .DS_Store
 Thumbs.db
+
+# Runtime execution state
+automation/state/*.json
